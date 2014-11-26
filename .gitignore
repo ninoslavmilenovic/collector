@@ -14,3 +14,12 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore bundle.
+/vendor/bundle
+
+# Ignore precompiled assets.
+/public/assets/*
+
+# Ignore paperclip uploads.
+/public/system
