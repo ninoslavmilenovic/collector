@@ -1,18 +1,40 @@
 ActiveAdmin.register Chunk do
+  permit_params :public_ip, :private_ip, :content
 
+  form html: { multipart: true } do |f|
+    f.inputs 'Chunk Details' do
+      f.input :public_ip
+      f.input :private_ip
+      f.input :content
+    end
+    f.actions
+  end
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if resource.something?
-  #   permitted
-  # end
+  index do
+    column :id
+    column :user do |chunk|
+      chunk.user.email
+    end
+    column :public_ip
+    column :private_ip
+    column :created_at
+    column :updated_at
+    actions
+  end
 
-
+  show do |chunk|
+    attributes_table do
+      row :id
+      row :user do
+        chunk.user.email
+      end
+      row :public_ip
+      row :private_ip
+      row :content do
+        simple_format(chunk.content)
+      end
+      row :created_at
+      row :updated_at
+    end
+  end
 end
