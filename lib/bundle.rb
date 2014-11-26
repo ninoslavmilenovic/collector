@@ -26,6 +26,6 @@ class Bundle < Struct.new :date, :chunks
   end
 
   def content
-    self.chunks.map(&:content).join('')
+    self.chunks.map(&:content).join("\n")
   end
 end
