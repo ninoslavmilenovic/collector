@@ -11,6 +11,6 @@ ActiveAdmin.register_page 'Bundle' do
     date = Date.parse(params[:date]) rescue Date.today
 
     h3 date.strftime("%d %B, %Y")
-    para Bundle.get(date).content
+    para simple_format(Bundle.get(date).content)
   end
 end
