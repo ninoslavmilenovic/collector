@@ -5,6 +5,8 @@ module Core
       format :json
       prefix :v1
 
+      rescue_from :all
+
       helpers do
         def authenticated?
           @current_user = User.find_by(authentication_token: params[:authentication_token])
