@@ -1,6 +1,10 @@
 ActiveAdmin.register Chunk do
   permit_params :public_ip, :private_ip, :content
 
+  filter :user, as: :select, collection: proc { User.all.map(&:email) }
+  filter :content
+  filter :created_at
+
   form html: { multipart: true } do |f|
     f.inputs 'Chunk Details' do
       f.input :public_ip
