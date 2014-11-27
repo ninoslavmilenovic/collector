@@ -21,7 +21,7 @@ class Bundle < Struct.new :date, :chunks
       end
 
       def chunk_group
-        Array(Chunk.all.group_by { |chunk| chunk.created_at.to_date })
+        Array(Chunk.all.group_by { |chunk| chunk.created_at.to_date }).reverse
       end
   end
 
