@@ -8,7 +8,7 @@ ActiveAdmin.register_page 'Bundle' do
   end
 
   content do
-    date = Date.parse(params[:date]) rescue Date.today
+    date = Date.parse(params[:date]) rescue (proc { Date.today }).call
 
     h3 date.strftime("%d %B, %Y")
     para simple_format(Bundle.get(date).content)
