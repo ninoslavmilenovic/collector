@@ -1,7 +1,7 @@
 ActiveAdmin.register Chunk do
   permit_params :public_ip, :private_ip, :content
 
-  filter :user, as: :select, collection: proc { User.all.map(&:email) }
+  filter :user, as: :select, collection: proc { User.all.map { |user| [user.email, user.id] } }
   filter :content
   filter :created_at
 
